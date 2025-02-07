@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+html{
+  font-family: 'Roboto', sans-serif;
+}
+header {
+  display: flex; /* Activa el modelo de caja flexible */
+  align-items: center; /* Alinea verticalmente los elementos en el centro */
+  justify-content: space-between; /* Espacia los elementos para que el texto esté a la izquierda y el logo a la derecha */
+  box-shadow: 0px 5px 15px rgba(151, 186, 252, 0.726); /* Sombra más pronunciada */
+  font-family: "Roboto", sans-serif;
+  background: linear-gradient( /* Degradado de fondo para el botón */
+  45deg,
+  rgb(30, 84, 233) 0%, /* Color inicial del degradado */
+  rgb(30, 84, 233) 0% /* Color final del degradado */
+);
+  position: relative; /* Asegúrate de que el header esté en una posición relativa */
+  z-index: 1; /* Asegura que el header esté por encima de otros elementos */
+
+}
+
+img{
+  width: 150px; /* Ajustado el tamaño del logo */
+height: auto;
+margin-right: 20px; /* Espacio entre el logo y el texto */
+margin-left: 20px;
+transition: transform 0.3s; /* Efecto de transición al hacer hover */
+flex-shrink: 0; /* Evita que el logo se encoja si el espacio es limitado */
+}
+
+.content-header {
+  display: flex;
+  flex-direction: column; /* Asegura que el título y el subtítulo estén en columnas */
+  flex-grow: 1; /* Permite que el contenido ocupe el espacio restante */
+}
+
+.content-header h1 {
+  margin-left: 20px;
+  font-size: 2rem; /* Aumentado el tamaño del título */
+  font-weight: 700;
+  color: #ffffff; /* Color más claro para mejor legibilidad */
+}
+.main-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 150px);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.container {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 4px 6px 6px 3px rgba(36, 68, 247, 0.247);
+  overflow: hidden;
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-section {
+  padding: 30px;
+}
+
+.heading {
+  font-size: 24px;
+  font-weight: 700;
+  color: rgb(30, 84, 233);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  background-color: #f0f4f8;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.input-icon {
+  width: 20px;
+  height: 20px;
+  fill: rgb(30, 84, 233);
+  margin-right: 10px;
+
+}
+
+.input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  padding: 5px;
+  font-size: 16px;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.login-button {
+  background: rgb(30, 84, 233);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background: rgb(91, 81, 240);
+}
+
+.info-section {
+  background: #f0f4f8;
+  padding: 30px;
+  border-top: 1px solid #e0e0e0;
+  text-align: center;
+}
+
+.info-section h2 {
+  color: rgb(30, 84, 233);
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.info-section p {
+  color: #333;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.info-section strong {
+  color: rgb(10, 41, 126);
+}
+
+footer{
+  background-color: #333;
+  color: #ffffff;
+  border-radius: 5px;
+  font-family: "Roboto";
+  padding: 1px;
+  text-align: center;
+  margin-top: 40px;
+  font-size: 12px;
+  margin-bottom: 0px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+  }
+
+  .form-section, .info-section {
+    width: 50%;
+  }
+
+  .info-section {
+    border-top: none;
+    border-left: 1px solid #e0e0e0;
+  }
+}
+

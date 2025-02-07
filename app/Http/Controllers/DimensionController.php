@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\dimension;
 use App\Models\ambitos;
 use App\Models\indicadores;
+use App\Models\Respuesta;
 use Illuminate\Http\Request;
 
 class DimensionController extends Controller
@@ -15,10 +16,34 @@ class DimensionController extends Controller
     public function index()
     {
         //
-        $data= Ambitos::with('dimension.indicadores')->get();
-        return view('autoevaluacion',compact('data'));
+        $id=auth()->user()->idcolegios;
+        $data = Ambitos::with(['dimension.indicadores.respuesta.resultado' => function ($query) use ($id) {
+            $query->where('idcolegios', $id);
+        }])->where('idambito','!=','4')->get()->sortBy('dimension.indicadores.idindicadores');
+        //return response()->json($data);
+        
+        return view('autoevaluacion',compact('data','id'));
     }
-
+    public function indexfaci($index){
+        $id=auth()->user()->idcolegios;
+        if($id==0){     
+            $id=$index;
+           }
+           $data = Ambitos::with(['dimension.indicadores.respuesta.resultado' => function ($query) use ($id) {
+            $query->where('idcolegios', $id);
+        }])->where('idambito','!=','4')->get()->sortBy('dimension.indicadores.idindicadores');
+        return view('autoevaluacion',compact('data','id'));
+    }
+    public function resumen()
+    {
+        $id=auth()->user()->idcolegios;
+        $data = Indicadores::with(['comentarios' => function ($query) use ($id) {
+            $query->where('idcolegios', $id);
+        }])->where('idindicadores','!=','5')->with('respuesta.resultado')->get();
+        //return response()->json($data);
+        
+        return view('resumen',compact('data'));
+    }
     /**
      * Show the form for creating a new resource.
      */

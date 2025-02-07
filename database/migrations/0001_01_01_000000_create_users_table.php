@@ -20,6 +20,8 @@ return new class extends Migration
             $table->integer('rol');
             $table->rememberToken();
             $table->timestamps();
+            $table->unsignedBigInteger('idcolegios')->nullable();
+            $table->foreign('idcolegios')->references('idcolegios')->on('colegios');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

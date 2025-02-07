@@ -8,48 +8,44 @@
 
     <div class="container">
         <div class="header">
-            <h2>1.1.- Diseño y Planificación de la Enseñanza</h2>
+            @foreach ($data1 as $item)<h2>{{$item->dimension->nombre}} </h2>
         </div>
 
         <div class="indicator">
-            <h3>Indicador 1.1.1:</h3>
-            <p>El proyecto curricular explicita los aprendizajes y/o desempeños que los estudiantes deben lograr en cada
-                grado escolar y área del currículum que aseguran la formación integral.</p>
+            <h3>
+                {{$item->nombre}}
+            </h3>
+            <p>{{$item->descripcion}}</p>
+            @endforeach
         </div>
-
+        @if(auth()->user()->rol==1)
+        <form action="{{url("resultado/")}}" method="POST" enctype="multipart/form-data" @if(auth()->user()->rol==2) disabled @endif @foreach ($respuesta1 as $rep) @if($rep)   disabled             @endif  @endforeach >
+            @csrf
+        @endif
+        @foreach ($data as $item)
         <div class="options">
             <label class="option">
-                <input type="radio" name="nivel" class="radio-input">
-                <span>El proyecto curricular del centro no está explicitado, o si existe no explicita los aprendizajes
-                    en ninguna área o grado escolar.</span>
+                <input type="radio" name="idrespuesta" value="{{$item->id}}" class="radio-input" @if(auth()->user()->rol==2) disabled @endif @foreach ($respuesta1 as $rep)
+                @if($rep->idrespuesta==$item->id)
+                checked
+                @endif
+                disabled
+                @endforeach>
+                <span>
+                    {{$item->respuesta}}
+                </span>
             </label>
-
-            <label class="option">
-                <input type="radio" name="nivel" class="radio-input">
-                <span>El proyecto curricular explicita los aprendizajes solamente en las áreas académicas (asignaturas)
-                    en todos o algunos grados escolares.</span>
-            </label>
-
-            <label class="option">
-                <input type="radio" name="nivel" class="radio-input">
-                <span>El proyecto curricular explicita parcialmente los aprendizajes que se espera lograr en los
-                    estudiantes, ya sea porque refiere a algunos grados escolares, o bien porque refiere sólo a algunas
-                    áreas que dan cuenta de la formación integral.</span>
-            </label>
-
-            <label class="option">
-                <input type="radio" name="nivel" class="radio-input">
-                <span>El proyecto curricular explicita los aprendizajes y/o desempeños que los estudiantes deben lograr
-                    en cada grado escolar y en cada una de las áreas del currículum que aseguran la formación
-                    integral.</span>
-            </label>
+        @endforeach
         </div>
 
         <div class="evidence-section">
             <h3>Evidencias</h3>
             <div class="file-upload">
-                <input type="file" id="file-input" class="file-input">
+                
+                <input name="evidencia" type="file" id="file-input" class="file-input" @if(auth()->user()->rol==2) disabled @endif @foreach ($respuesta1 as $rep) @if($rep)   disabled             @endif  @endforeach>
                 <label for="file-input" class="file-label">
+
+                    <p font-color="red">Solo se permite la subida de archivos pdf*</p>
                     <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5"
                         viewBox="0 0 24 24">
                         <path
@@ -59,44 +55,69 @@
                     <span class="file-text">Seleccionar archivo</span>
                 </label>
                 <p class="file-name">Ningún archivo seleccionado</p>
+                @foreach ($respuesta1 as $rep) @if($rep) <a href="{{ asset($rep->evidencia) }}" target="_blank">{{$rep->evidencia}}</a> @endif  @endforeach
             </div>
         </div>
 
         <div class="evidence-section">
             <h3>Fundamentación de las evidencias</h3>
-            <textarea class="documentation"
-                placeholder="Escriba aquí la fundamentación de sus evidencias..."></textarea>
+            <textarea name="fundamentacion" class="documentation" placeholder="Escriba aquí la fundamentación de sus evidencias..." @if(auth()->user()->rol==2) disabled @endif @foreach ($respuesta1 as $rep) @if($rep)   disabled  @endif  @endforeach> @foreach ($respuesta1 as $rep) @if($rep)   {{$rep->fundamentacion}}       @endif  @endforeach </textarea>
         </div>
 
         <div class="form-group observations-section">
             <h3>Observaciones</h3>
-            <textarea maxlength="300" placeholder="Escribe tus observaciones aquí..."></textarea>
+            <textarea name="observacion" maxlength="300" placeholder="Escribe tus observaciones aquí..." @if(auth()->user()->rol==2) disabled @endif @foreach ($respuesta1 as $rep) @if($rep)   disabled  @endif  @endforeach> @foreach ($respuesta1 as $rep) @if($rep)   {{$rep->observacion}}       @endif  @endforeach </textarea>
             <div class="char-count">300 caracteres restantes</div>
         </div>
 
-        <div class="comments-container">
+        <div class="comments-container" style="width: 100%;">
             <div class="comments-header">
                 <h2>Comentarios del facilitador en indicadores</h2>
             </div>
-            <div class="comments-content">
+            <div class="comments-content ">
                 <div class="no-comments">
-                    Aún no hay comentarios
+                    @foreach ($data1 as $rep)
+                    @foreach ($rep->comentarios as $com)
+                        <p>{{$com->created_at}} : {{$com->comentario}}</p>
+                        <br>
+                    @endforeach
+                    @endforeach
+                    @if(auth()->user()->rol==2)
+                    <form action="{{url('comentarios')}}" method="post">
+                        @csrf
+                        @foreach ($data1 as $item)
+                        <input type="hidden" name="idindicadores" value="{{$item->idindicadores}}"> 
+                        
+                        @endforeach
+                        <input type="hidden" name="idcolegios" value="{{$id}}"> 
+
+                        <textarea name="comentario" class="documentation" placeholder="Escriba aquí su comentario..." ></textarea>
+                        <button type="submit" class="btn btn-primary" >Comentar</button>
+                    </form>
+                    @endif
                 </div>
             </div>
         </div>
-
-        <div class="button-group">
-            <button class="btn btn-secondary">Guardar</button>
+        
+        @if(auth()->user()->rol==1)
+        <div class="button-group" @foreach ($respuesta1 as $rep) @if($rep)   hidden             @endif  @endforeach >
+            <button class="btn btn-secondary" >Guardar</button>
             <button class="btn btn-primary">Guardar y pasar a la siguiente pregunta</button>
+        </form>
         </div>
+        @endif
         </section>
+    
 
     </div>
-    <footer>
-        <p>FLACI ACSI copyright 2024</p>
-    </footer>
+    </div>
+    <br>
+</div>
+</div>
+
+
     <script src="script.js"></script>
 
 </body>
-
+<x-footer> </x-footer>
 </html>

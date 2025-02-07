@@ -1,0 +1,253 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+html {
+    margin-bottom: 0;
+    padding-bottom: 0%;
+    font-family: 'Roboto', sans-serif;
+}
+header {
+    display: flex; /* Activa el modelo de caja flexible */
+    align-items: center; /* Alinea verticalmente los elementos en el centro */
+    justify-content: space-between; /* Espacia los elementos para que el texto esté a la izquierda y el logo a la derecha */
+    box-shadow: 0px 5px 15px rgba(151, 186, 252, 0.726); /* Sombra más pronunciada */
+    font-family: "Roboto", sans-serif;
+    background: linear-gradient( /* Degradado de fondo para el botón */
+    45deg,
+    rgb(30, 84, 233) 0%, /* Color inicial del degradado */
+    rgb(30, 84, 233) 0% /* Color final del degradado */
+  );
+    position: relative; /* Asegúrate de que el header esté en una posición relativa */
+    z-index: 1; /* Asegura que el header esté por encima de otros elementos */
+  
+  }
+
+  img{
+    width: 150px; /* Ajustado el tamaño del logo */
+  height: auto;
+  margin-right: 20px; /* Espacio entre el logo y el texto */
+  margin-left: 20px;
+  transition: transform 0.3s; /* Efecto de transición al hacer hover */
+  flex-shrink: 0; /* Evita que el logo se encoja si el espacio es limitado */
+  }
+  
+  .content-header {
+    display: flex;
+    flex-direction: column; /* Asegura que el título y el subtítulo estén en columnas */
+    flex-grow: 1; /* Permite que el contenido ocupe el espacio restante */
+  }
+  
+  .content-header h1 {
+    margin-left: 20px;
+    font-size: 2rem; /* Aumentado el tamaño del título */
+    font-weight: 700;
+    color: #ffffff; /* Color más claro para mejor legibilidad */
+  }
+  
+  .header-nav {
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+.header-nav a {
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    background-color: white;
+    box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 14px;
+    transition: all 0.5s ease;
+    text-decoration: none;
+    color: #000;
+}
+
+.header-nav a:hover {
+    letter-spacing: 2px;
+    background-color: hsl(224, 92%, 20%);
+    color: hsl(0, 0%, 100%);
+    box-shadow: rgba(180, 190, 250, 0.822) 0px 7px 29px 0px;
+}
+
+.header-nav a:active {
+    letter-spacing: 2px;
+    background-color: hsl(212, 80%, 48%);
+    color: hsl(0, 0%, 100%);
+    box-shadow: rgb(55, 94, 221) 0px 0px 0px 0px;
+    transform: translateY(2px);
+    transition: 100ms;
+}
+
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.contact-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.contact-header h1 {
+    color: #333;
+    font-size: 24px;
+}
+
+.Btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition-duration: 0.3s;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+    background-color: white;
+    margin-right: 7px;
+    text-decoration: none; /* Añadido para quitar el subrayado del enlace */
+  }
+  
+
+  .sign {
+    width: 100%;
+    transition-duration: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .sign svg {
+    width: 17px;
+  }
+  
+  .sign svg path {
+    fill: black;
+  }
+  /* text */
+  .text {
+    position: absolute;
+    right: 0%;
+    width: 0%;
+    opacity: 0;
+    color: white;
+    font-size: 1.2em;
+    font-weight: 600;
+    transition-duration: 0.3s;
+  }
+  /* hover effect on button width */
+  .Btn:hover {
+    background-color: black;
+    width: 125px;
+    border-radius: 40px;
+    transition-duration: 0.3s;
+  }
+  
+  .Btn:hover .sign {
+    width: 12%;
+    transition-duration: 0.3s;
+    padding-left: 20px;
+  }
+  
+  .Btn:hover .sign svg path {
+    fill: white;
+  }
+  
+  /* hover effect button's text */
+  .Btn:hover .text {
+    opacity: 1;
+    width: 70%;
+    transition-duration: 0.3s;
+    padding-left: 20px;
+  }
+  /* button click effect*/
+  .Btn:active {
+    transform: translate(2px, 2px);
+  }
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.resumen {
+    padding: 1.5rem;
+    color: #1a1a1a;
+    font-size: 1.5rem;
+    border-bottom: 1px solid #eaeaea;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+th {
+    background-color: #f8f9fa;
+    color: #1a1a1a;
+    font-weight: 600;
+    text-align: left;
+    padding: 1rem;
+    border-bottom: 2px solid #dee2e6;
+}
+
+td {
+    padding: 1rem;
+    border-bottom: 1px solid #eaeaea;
+    color: #4a5568;
+}
+
+.indicator {
+    color: #2563eb;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.indicator:hover {
+    text-decoration: underline;
+}
+
+tr:hover {
+    background-color: #f8fafc;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+
+    th, td {
+        padding: 0.75rem;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+}
+
+footer{
+    background-color: #333;
+    color: #ffffff;
+    border-radius: 5px;
+    font-family: "Roboto";
+    padding: 1px;
+    text-align: center;
+    margin-top: 40px;
+    font-size: 12px;
+    margin-bottom: 0px;
+}

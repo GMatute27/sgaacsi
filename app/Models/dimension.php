@@ -15,7 +15,8 @@ class dimension extends Model
     }
     public function indicadores(): HasMany
     {
-        return $this->hasMany(related: indicadores::class, foreignKey: 'idindicadores', localKey: 'iddimension')->chaperone();
+        return $this->hasMany(related: indicadores::class, foreignKey: 'iddimension', localKey: 'iddimension')->chaperone();
     }
-    protected $fillable = ['nombre', 'descripcion','ambitos_id_ambito'];
+    protected $fillable = ['nombre', 'descripcion','idambito'];
+    
 }
