@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     @vite(['resources/css/app.css', 'resources/js/app.js','resources/css/index.css'])
 
 <head>
@@ -16,7 +16,7 @@
         <div class="contact-list">
             <div class="contact-item facilitadores">
                 <p>Facilitadores</p>
-                <p>Ana Guinand</p>
+                <p>Any Guinand</p>
                 <span>anyguinand@gmail.com</span>
             </div>
             <div class="contact-item profesional">
@@ -67,22 +67,22 @@
     <section>
         <div class="card-container">
             <div class="card">
-                <div class="card__img" style="background-image: url('{{asset('/assets/jo.jpg')}}');"></div>
-                <div class="card-int__title">Jesus Obrero</div>
+                <div class="card__img" style="background-image: url('{{asset('/assets/jo.png')}}'); background-size: contain; background-color: white;"></div>
+                <div class="card-int__title">Jesús Obrero</div>
                 <a href="{{url('autoevaluacion/facilitador/1')}}"><button class="card-int__button">Ingresar</button></a>
             </div>
             <div class="card">
-                <div class="card__img" style="background-image: url('{{asset('/assets/si.png')}}');"></div>
+                <div class="card__img" style="background-image: url('{{asset('/assets/si.png')}}'); background-size: contain; background-color: white;"></div>
                 <div class="card-int__title">San Ignacio</div>
                 <a href="{{url('autoevaluacion/facilitador/2')}}"><button class="card-int__button">Ingresar</button></a>
             </div>
             <div class="card">
-                <div class="card__img" style="background-image: url('{{asset('/assets/lg.png')}}');"></div>
+                <div class="card__img" style="background-image: url('{{asset('/assets/lg.png')}}'); background-size: contain; background-color: white;"></div>
                 <div class="card-int__title">Loyola Gumilla</div>
                 <a href="{{url('autoevaluacion/facilitador/3')}}"><button class="card-int__button">Ingresar</button></a>
             </div>
             <div class="card">
-                <div class="card__img" style="background-image: url('{{asset('/assets/g.jpg')}}');"></div>
+                <div class="card__img" style="background-image: url('{{asset('/assets/g.jpg')}}'); background-size: contain; background-color: white;"></div>
                 <div class="card-int__title">Gonzaga</div>
                 <a href="{{url('autoevaluacion/facilitador/4')}}"><button class="card-int__button">Ingresar</button></a>
             </div>

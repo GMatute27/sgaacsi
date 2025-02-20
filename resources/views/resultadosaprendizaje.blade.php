@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/scriptresu.js','resources/css/indexresu1.css'])
 
 <head>
@@ -101,7 +101,6 @@
             @if(auth()->user()->rol==1)
             <div class="button-group" @foreach ($data as $rep) @if($rep)   hidden             @endif  @endforeach>
                 <button class="btn btn-secondary">Guardar</button>
-                <button class="btn btn-primary">Guardar y pasar a la siguiente pregunta</button>
             </div> 
         </form>
         @endif
@@ -111,6 +110,12 @@
 
     </main>
     <script src="script.js"></script>
+    <br>
+<br>
+<br>
+<br>
+<br>
+<br>
     <x-footer></x-footer>
 </body>
 

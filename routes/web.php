@@ -1,5 +1,6 @@
 <?php
 
+ 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\DimensionController;
@@ -20,8 +21,8 @@ Route::resource('/autoevaluacion', controller: DimensionController::class)->midd
 Route::view(uri: '/indicador',view: 'indicador')->name('indicador')->middleware('auth');
 Route::resource(name: '/evidencias', controller: RespuestaController::class)->middleware('auth');
 Route::resource(name: '/resultado', controller: ResultadoController::class)->middleware('auth');
-Route::view(uri: '/resumen',view: 'resumen')->name('resumen')->middleware('auth');
 Route::get('/resumen', [App\Http\Controllers\DimensionController::class, 'resumen'])->name('resumen')->middleware('auth');
+Route::get('/resumen/{index}', [App\Http\Controllers\DimensionController::class, 'resumenfaci'])->name('resumen')->middleware('auth');
 Route::get('/autoevaluacion/facilitador/{index}', [App\Http\Controllers\DimensionController::class, 'indexfaci'])->name('autoevaluacion')->middleware('auth');
 Route::get('/resultadosaprendizaje', [App\Http\Controllers\ResultadoController::class, 'indexapre'])->name('resultadoaprendizaje')->middleware('auth');
 Route::get('/resultadosaprendizaje/{idc}', [App\Http\Controllers\ResultadoController::class, 'indexaprefac'])->name('resultadoaprendizaje')->middleware('auth');

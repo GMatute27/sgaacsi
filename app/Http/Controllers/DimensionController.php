@@ -19,7 +19,7 @@ class DimensionController extends Controller
         $id=auth()->user()->idcolegios;
         $data = Ambitos::with(['dimension.indicadores.respuesta.resultado' => function ($query) use ($id) {
             $query->where('idcolegios', $id);
-        }])->where('idambito','!=','4')->get()->sortBy('dimension.indicadores.idindicadores');
+        }])->where('idambito','!=','4')->get();
         //return response()->json($data);
         
         return view('autoevaluacion',compact('data','id'));
@@ -31,22 +31,40 @@ class DimensionController extends Controller
            }
            $data = Ambitos::with(['dimension.indicadores.respuesta.resultado' => function ($query) use ($id) {
             $query->where('idcolegios', $id);
-        }])->where('idambito','!=','4')->get()->sortBy('dimension.indicadores.idindicadores');
+        }])->where('idambito','!=','4')->get();
         return view('autoevaluacion',compact('data','id'));
     }
     public function resumen()
     {
-        $id=auth()->user()->idcolegios;
+        $id = auth()->user()->idcolegios;
         $data = Indicadores::with(['comentarios' => function ($query) use ($id) {
             $query->where('idcolegios', $id);
-        }])->where('idindicadores','!=','5')->with('respuesta.resultado')->get();
+        }, 'respuesta.resultado' => function ($query) use ($id) {
+            $query->where('idcolegios', $id);
+        }])->where('idindicadores', '!=', '5')->get();
         //return response()->json($data);
         
-        return view('resumen',compact('data'));
+        return view('resumen',compact('data','id'));
+    }
+    public function resumenfaci($index)
+    {
+        $id = auth()->user()->idcolegios;
+        if($id==0){     
+            $id=$index;
+           }
+        $data = Indicadores::with(['comentarios' => function ($query) use ($id) {
+            $query->where('idcolegios', $id);
+        }, 'respuesta.resultado' => function ($query) use ($id) {
+            $query->where('idcolegios', $id);
+        }])->where('idindicadores', '!=', '5')->get();
+        //return response()->json($data);
+        
+        return view('resumen', compact('data', 'id'));
     }
     /**
      * Show the form for creating a new resource.
      */
+    
     public function create()
     {
         //
