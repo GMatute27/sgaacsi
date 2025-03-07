@@ -93,6 +93,7 @@ class ResultadoController extends Controller
         $datosResultado['fundamentacion'] = 'No aplica';
         //return response()->json($datosResultado);
         resultado::insert($datosResultado);
+        
          return redirect()->route('autoevaluacion.index')->with('success', 'Resultado creado correctamente.');
     }
     
