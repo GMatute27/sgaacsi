@@ -2,7 +2,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <header id="header">
         <a href="{{route('home')}}">
-        <img src="{{asset('/assets/download-removebg-preview.png')}}" alt="logo blanco" class="logob"></a>
+        <img src="{{asset('/assets/download-removebg-preview.png')}}" alt="logo blanco" class="logob" style="background-color: white; border-radius: 10%;"></a>
         <div class="content-header">
             <title>ACSI </title>
 

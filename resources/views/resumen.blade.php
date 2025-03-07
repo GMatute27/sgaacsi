@@ -85,9 +85,9 @@
                             @endforeach</td>
                         <td>
                             <div class="position-relative d-inline-block">
-                              @if(!$dat->comentarios->isEmpty())
-                              <span class="badge bg-info position-absolute top-0 start-100 translate-middle">!</span>
-                              @endif
+                                @if(!$dat->comentarios->isEmpty())
+                                <span class="badge bg-info position-absolute top-0 start-100 translate-middle">{{ $dat->comentarios->count() }}</span>
+                                @endif
                               <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{$dat->idindicadores}}">
                               Ver comentarios
                               </button>

@@ -32,12 +32,12 @@ class ComentariosController extends Controller
         //
         $data = request()->except('_token');
         $data['idusers'] = auth()->user()->id;
-
         comentarios::insert($data);
         $idcol= request('idcolegios');
         //return response()->json($idcol);
         return redirect()->to('autoevaluacion/facilitador/'.$idcol)->with('success', 'Comentario agregado con éxito');
     }
+    
 
     /**
      * Display the specified resource.

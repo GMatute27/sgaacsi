@@ -21,17 +21,12 @@
             </div>
             <div class="contact-item profesional">
                 <p>Profesional de apoyo</p>
-                <p>Aún no han sido designados</p>
-            </div>
-            <div class="contact-item direccion">
-                <p>Dirección del sistema</p>
-                <p>Mora Podestá</p>
-                <span>mora.podesta@flacsi.net</span>
+                <p>Anyerling </p>
             </div>
             <div class="contact-item asistencia">
                 <p>Asistencia técnica</p>
-                <p>Jimena Sandoya</p>
-                <span>asistenciascge@flacsi.net</span>
+                <p>Guillermo Sulbaran</p>
+                <span>guillermo.sulbaran@itjo.edu.ve</span>
             </div>
         </div>
     </nav>
