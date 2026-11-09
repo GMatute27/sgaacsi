@@ -280,7 +280,12 @@ tr:hover {
 }
 
 @media print {
-    header, footer, .btn, .progress, .modal {
+    @page {
+        size: landscape;
+        margin: 12mm;
+    }
+
+    header, footer, .btn, .progress, .modal, .screen-only {
         display: none !important;
     }
 
@@ -294,10 +299,65 @@ tr:hover {
         max-width: 100%;
         margin: 0;
         padding: 0;
+        border: 0;
     }
 
-    table {
-        font-size: 10pt;
+    .report-hero {
+        display: block;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #1d4ed8;
+    }
+
+    .report-summary {
+        grid-template-columns: repeat(3, 1fr);
+        margin: 12px 0;
+    }
+
+    .report-table-wrap {
+        overflow: visible;
+        border: 0;
+    }
+
+    .report-table {
+        width: 100%;
+        min-width: 0;
+        table-layout: fixed;
+        border: 1px solid #94a3b8;
+        font-size: 8pt;
+    }
+
+    .report-table th,
+    .report-table td {
+        padding: 6px;
+        border: 1px solid #cbd5e1;
+        vertical-align: top;
+        overflow-wrap: anywhere;
+    }
+
+    .report-table th {
+        position: static;
+        background: #dbeafe !important;
+        color: #0f172a;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .report-table tr {
+        break-inside: avoid;
+    }
+
+    .response-pill {
+        padding: 0;
+        background: transparent;
+        color: #000;
+    }
+
+    .print-comments {
+        display: block;
+    }
+
+    .print-comments p {
+        margin: 0 0 4px;
     }
 }
 

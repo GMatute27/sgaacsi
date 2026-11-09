@@ -117,9 +117,18 @@
                                 @if(!$dat->comentarios->isEmpty())
                                 <span class="badge bg-info position-absolute top-0 start-100 translate-middle">{{ $dat->comentarios->count() }}</span>
                                 @endif
-                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{$dat->idindicadores}}">
+                              <button type="button" class="btn btn-primary screen-only" data-bs-toggle="modal" data-bs-target="#exampleModal{{$dat->idindicadores}}">
                               Ver comentarios
                               </button>
+                              <div class="print-comments">
+                                @if($dat->comentarios->isEmpty())
+                                  Sin comentarios
+                                @else
+                                  @foreach($dat->comentarios as $com)
+                                    <p><strong>{{ $com->created_at }}:</strong> {{ $com->comentario }}</p>
+                                  @endforeach
+                                @endif
+                              </div>
                             </div>
                               <!-- Modal -->
                               <div class="modal fade" id="exampleModal{{$dat->idindicadores}}" tabindex="-1" aria-labelledby="exampleModalLabel{{$dat->id}}" aria-hidden="true">
