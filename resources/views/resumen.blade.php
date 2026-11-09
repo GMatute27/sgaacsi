@@ -31,31 +31,32 @@
                         @endif
                     </h1>
             @endif
-            <div class="d-flex justify-content-between align-items-center">
-          <h1 class="resumen">Resumen de Autoevaluación</h1> <h2 class="">Porcentaje de progreso:</h2> 
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+          <h1 class="resumen">Reporte de Autoevaluación</h1>
+          <button type="button" class="btn btn-outline-primary" onclick="window.print()">Imprimir / guardar reporte</button>
           @php
-            $porcentaje = 0;
-            $totalIndicadores = count($data);
-            $indicadoresConRespuesta = 0;
-            foreach ($data as $dat) {
-              foreach($dat->respuesta as $evidencia){
-            foreach($evidencia->resultado as $evid) {
-                if($evid->evidencia != null) {
-              $indicadoresConRespuesta++; 
-                }
-            }
-              }
-            }
+            $totalIndicadores = $data->count();
+            $indicadoresConRespuesta = $data->filter(function ($indicador) {
+                return $indicador->respuesta->contains(function ($respuesta) {
+                    return $respuesta->resultado->isNotEmpty();
+                });
+            })->count();
             $porcentaje = $totalIndicadores > 0 ? ($indicadoresConRespuesta / $totalIndicadores) * 100 : 0;
           @endphp
-          <div class="progress" style="width: 50%;">
-            <div class="progress-bar" role="progressbar" style="width: {{ $porcentaje }}%;" aria-valuenow="{{ $porcentaje }}" aria-valuemin="0" aria-valuemax="100">{{ round($porcentaje) }}%</div>
+          <div class="d-flex align-items-center gap-2" style="min-width: 280px;">
+            <span class="text-nowrap">Progreso: {{ round($porcentaje) }}%</span>
+            <div class="progress flex-grow-1" aria-label="{{ round($porcentaje) }}% de indicadores respondidos">
+              <div class="progress-bar" role="progressbar" style="width: {{ $porcentaje }}%;" aria-valuenow="{{ $porcentaje }}" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
           </div>
             </div>
+            <p class="text-muted mb-3">Este reporte incluye todos los indicadores, la respuesta seleccionada y sus evidencias registradas.</p>
             <table>
+                <caption class="visually-hidden">Reporte completo de indicadores y respuestas</caption>
                 <thead>
                     <tr>
                         <th>Indicador</th>
+                        <th>Respuesta seleccionada</th>
                         <th>Evidencia</th>
                         <th>Descripción evidencia</th>
                         <th>Observaciones</th>
@@ -68,11 +69,26 @@
                     <tr>
                        
                         <td>{{$dat->nombre}}</td>
-                        <td>@foreach($dat->respuesta as $evidencia)
+                        <td>
+                            @php
+                                $respuestaSeleccionada = $dat->respuesta->first(function ($respuesta) {
+                                    return $respuesta->resultado->isNotEmpty();
+                                });
+                            @endphp
+                            @if($respuestaSeleccionada)
+                                <strong>{{ $respuestaSeleccionada->respuesta }}</strong>
+                                <br><small class="text-muted">Valor: {{ $respuestaSeleccionada->valor }}</small>
+                            @else
+                                <span class="text-muted">Sin respuesta registrada</span>
+                            @endif
+                        </td>
+                        <td>@forelse($dat->respuesta as $evidencia)
                             @foreach($evidencia->resultado as $evid)
-                            <a href="{{ asset($evid->evidencia) }}" target="_blank">{{$evid->evidencia}}</a>
+                            <a href="{{ asset($evid->evidencia) }}" target="_blank" rel="noopener">{{$evid->evidencia}}</a>
                             @endforeach
-                            @endforeach</td>
+                            @empty
+                            <span class="text-muted">Sin evidencia</span>
+                            @endforelse</td>
                         <td>@foreach($dat->respuesta as $evidencia)
                             @foreach($evidencia->resultado as $evid)
                             {{$evid->observacion}}

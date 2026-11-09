@@ -240,6 +240,28 @@ tr:hover {
     }
 }
 
+@media print {
+    header, footer, .btn, .progress, .modal {
+        display: none !important;
+    }
+
+    body, .container {
+        background: #fff !important;
+        box-shadow: none !important;
+        color: #000 !important;
+    }
+
+    .container {
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    table {
+        font-size: 10pt;
+    }
+}
+
 footer{
     background-color: #333;
     color: #ffffff;
