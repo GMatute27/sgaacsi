@@ -31,9 +31,14 @@
                         @endif
                     </h1>
             @endif
-            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
-          <h1 class="resumen">Reporte de Autoevaluación</h1>
-          <button type="button" class="btn btn-outline-primary" onclick="window.print()">Imprimir / guardar reporte</button>
+            <section class="report-hero">
+              <div>
+                <p class="report-kicker">Sistema de autoevaluación</p>
+                <h1 class="resumen">Reporte de Autoevaluación</h1>
+                <p class="report-subtitle">Consulta de indicadores, respuestas y evidencias registradas.</p>
+              </div>
+              <button type="button" class="report-print btn btn-primary" onclick="window.print()">Imprimir / guardar reporte</button>
+            </section>
           @php
             $totalIndicadores = $data->count();
             $indicadoresConRespuesta = $data->filter(function ($indicador) {
@@ -43,15 +48,23 @@
             })->count();
             $porcentaje = $totalIndicadores > 0 ? ($indicadoresConRespuesta / $totalIndicadores) * 100 : 0;
           @endphp
-          <div class="d-flex align-items-center gap-2" style="min-width: 280px;">
-            <span class="text-nowrap">Progreso: {{ round($porcentaje) }}%</span>
+          <div class="report-progress d-flex align-items-center gap-3">
+            <div>
+              <span class="report-progress-label">Progreso del reporte</span>
+              <strong>{{ round($porcentaje) }}%</strong>
+            </div>
             <div class="progress flex-grow-1" aria-label="{{ round($porcentaje) }}% de indicadores respondidos">
               <div class="progress-bar" role="progressbar" style="width: {{ $porcentaje }}%;" aria-valuenow="{{ $porcentaje }}" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
           </div>
             </div>
-            <p class="text-muted mb-3">Este reporte incluye todos los indicadores, la respuesta seleccionada y sus evidencias registradas.</p>
-            <table>
+            <div class="report-summary">
+              <div><span>Total de indicadores</span><strong>{{ $totalIndicadores }}</strong></div>
+              <div><span>Con respuesta</span><strong>{{ $indicadoresConRespuesta }}</strong></div>
+              <div><span>Pendientes</span><strong>{{ $totalIndicadores - $indicadoresConRespuesta }}</strong></div>
+            </div>
+            <div class="report-table-wrap">
+            <table class="report-table">
                 <caption class="visually-hidden">Reporte completo de indicadores y respuestas</caption>
                 <thead>
                     <tr>
@@ -76,8 +89,8 @@
                                 });
                             @endphp
                             @if($respuestaSeleccionada)
-                                <strong>{{ $respuestaSeleccionada->respuesta }}</strong>
-                                <br><small class="text-muted">Valor: {{ $respuestaSeleccionada->valor }}</small>
+                                <span class="response-pill">{{ $respuestaSeleccionada->respuesta }}</span>
+                                <small class="response-value">Valor: {{ $respuestaSeleccionada->valor }}</small>
                             @else
                                 <span class="text-muted">Sin respuesta registrada</span>
                             @endif
@@ -136,6 +149,7 @@
                     </tr> @endforeach
                 </tbody>
             </table>
+            </div>
         </div>
 <br>
 <br>

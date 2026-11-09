@@ -174,20 +174,62 @@ header {
     transform: translate(2px, 2px);
   }
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 1380px;
+    margin: 2.5rem auto;
+    padding: 2rem;
+    background: #ffffff;
+    border: 1px solid #e6eaf2;
+    border-radius: 20px;
+    box-shadow: 0 18px 45px rgba(30, 55, 90, 0.08);
     overflow: hidden;
 }
 
-.resumen {
-    padding: 1.5rem;
-    color: #1a1a1a;
-    font-size: 1.5rem;
-    border-bottom: 1px solid #eaeaea;
+.report-hero {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #edf0f5;
 }
+
+.report-kicker {
+    margin: 0 0 .35rem;
+    color: #2563eb;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+.resumen {
+    margin: 0;
+    padding: 0;
+    color: #15233b;
+    font-size: clamp(1.65rem, 3vw, 2.25rem);
+    font-weight: 800;
+}
+
+.report-subtitle { margin: .5rem 0 0; color: #64748b; }
+.report-print { white-space: nowrap; border-radius: 10px; padding: .7rem 1rem; }
+.report-progress { margin: 1.25rem 0; color: #334155; }
+.report-progress-label { display: block; color: #64748b; font-size: .78rem; }
+.report-progress strong { color: #15233b; font-size: 1.25rem; }
+.progress { height: 9px; min-width: 180px; border-radius: 99px; background: #e8eef8; }
+.progress-bar { border-radius: inherit; background: linear-gradient(90deg, #2563eb, #38bdf8); }
+.report-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.25rem 0; }
+.report-summary div { padding: 1rem 1.15rem; border: 1px solid #e8edf5; border-radius: 14px; background: #f8faff; }
+.report-summary span { display: block; color: #64748b; font-size: .78rem; font-weight: 600; }
+.report-summary strong { display: block; margin-top: .25rem; color: #15233b; font-size: 1.55rem; }
+.report-table-wrap { overflow-x: auto; border: 1px solid #e5eaf2; border-radius: 14px; }
+.report-table { min-width: 1050px; }
+.report-table th { position: sticky; top: 0; z-index: 1; background: #f1f5fb; color: #334155; font-size: .75rem; letter-spacing: .04em; text-transform: uppercase; }
+.report-table td { vertical-align: top; font-size: .9rem; line-height: 1.5; }
+.report-table tr:nth-child(even) { background: #fbfcfe; }
+.report-table tr:hover { background: #eef5ff; }
+.response-pill { display: inline-block; padding: .3rem .6rem; border-radius: 999px; background: #e0edff; color: #1d4ed8; font-weight: 700; }
+.response-value { display: block; margin-top: .4rem; color: #64748b; }
+
 
 table {
     width: 100%;
@@ -226,18 +268,15 @@ tr:hover {
 
 /* Responsive design */
 @media (max-width: 768px) {
-    body {
-        padding: 1rem;
-    }
-
-    th, td {
-        padding: 0.75rem;
-    }
-
-    table {
-        display: block;
-        overflow-x: auto;
-    }
+    body { padding: .75rem; }
+    .container { margin: 1rem auto; padding: 1rem; border-radius: 14px; }
+    .report-hero { flex-direction: column; }
+    .report-print { width: 100%; }
+    .report-summary { grid-template-columns: 1fr; gap: .65rem; }
+    .report-progress { align-items: flex-start !important; flex-direction: column; }
+    .report-progress .progress { width: 100%; }
+    th, td { padding: .75rem; }
+    table { display: block; overflow-x: auto; }
 }
 
 @media print {
